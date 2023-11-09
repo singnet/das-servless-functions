@@ -8,6 +8,7 @@ on:
 
 env:
   DEPLOYMENT_FILE: das-function.yml
+  OPENFAAS_TEMPLATES: https://github.com/singnet/das-openfaas-templates.git
 
 jobs:
   build:
@@ -30,7 +31,7 @@ jobs:
 
       - name: Pull template
         working-directory: ./das-infra-stack-vultr
-        run: faas-cli template store pull python3
+        run: faas-cli template pull ${{ env.OPENFAAS_TEMPLATES }}
 
       - name: Run shrinkwrap build
         working-directory: ./das-infra-stack-vultr
